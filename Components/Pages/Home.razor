@@ -1,14 +1,22 @@
 ﻿@page "/"
+@rendermode InteractiveServer
 
 <div id="front">
 	<img id="logo" src="/logo.png" alt="GameBox">
 
 	<div id="newsletter">
 		<h2>Interested?</h2>
-		<form action="/newsletter" method="post">
-			<input type="email" name="email" placeholder="Your email address" />
+		@if (formSubmitted)
+		{
+			<p>Thank you!</p>
+		}
+		else
+		{
+		<form @onsubmit="SubmitForm">
+			<input type="email" name="email" required placeholder="Your email address" />
 			<input type="submit" value="Subscribe">
 		</form>
+		}
 	</div>
 
 	<ul class="social-links">
@@ -22,3 +30,13 @@
 		</li>
 	</ul>
 </div>
+
+@code {
+	bool formSubmitted = false;
+
+	void SubmitForm()
+	{
+		// TODO: send email to mailing list
+		formSubmitted = true;
+	}
+}
