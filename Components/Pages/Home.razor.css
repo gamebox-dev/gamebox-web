@@ -1,0 +1,47 @@
+#front {
+	align-items: center;
+	gap: 2em;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	justify-content: center;
+	position: absolute;
+	width: 100%;
+}
+
+#logo {
+	display: block;
+	max-height: 200px;
+	max-width: 100%;
+}
+
+#newsletter {
+	text-align: center;
+}
+
+
+.social-links {
+    list-style: none;
+    margin: 3em 0 0;
+    padding: 0;
+}
+
+.social-links li {
+    display: inline-block;
+    margin: 0em;
+}
+
+.social-links a {
+    color: #666;
+    padding: 0 0.25em;
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    color: #000;
+}
+
+.social-links svg {
+    height: 2em;
+    width: 2em;
+}
