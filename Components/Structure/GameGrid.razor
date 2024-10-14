@@ -1,0 +1,26 @@
+<ul>
+@foreach (var game in Games)
+{
+    <li>
+    	<NavLink href="game">
+    		<img src="@game.Image" alt="@game.Title" title="@game.Title" />
+    	</NavLink>
+    </li>
+}
+</ul>
+
+@code {
+	public readonly struct Game {
+		public string Title {get; init;}
+		public string Image {get; init;}
+
+		public Game(string title, string image)
+		{
+			Title = title;
+			Image = image;
+		}
+	}
+
+	[Parameter]
+	public required Game[] Games {get; set;}
+}
