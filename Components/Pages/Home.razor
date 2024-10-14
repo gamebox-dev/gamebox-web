@@ -1,21 +1,22 @@
 ﻿@page "/"
 @page "/collection"
+@rendermode InteractiveServer
 
 <div id="home">
-	<form>
+	<form @onsubmit="Noop">
 		<div class="search-field">
-			<input type="search" name="q" placeholder="Search..." />
+			<input type="search" name="q" placeholder="Search..." @oninput="FilterGames" />
 			<button>
 				<Icon Type="Icon.IconType.MagnifyingGlass" />
 			</button>
 		</div>
 	</form>
 
-	<GameGrid Games="@games" />
+	<GameGrid Games="@currentGames" />
 </div>
 
 @code {
-	GameGrid.Game[] games = [
+	static List<GameGrid.Game> allGames = [
 		new GameGrid.Game("A Vampyre Story", "https://images.igdb.com/igdb/image/upload/t_cover_big/co3diy.webp"),
 		new GameGrid.Game("American McGee Presents: Scrapland", "https://images.igdb.com/igdb/image/upload/t_cover_big/co2gb2.webp"),
 		new GameGrid.Game("Age of Empires III", "https://images.igdb.com/igdb/image/upload/t_cover_big/co1xy6.webp"),
@@ -29,4 +30,23 @@
 		new GameGrid.Game("Vampire: The Masquerade - Bloodlines", "https://images.igdb.com/igdb/image/upload/t_cover_big/co2n14.webp"),
 		new GameGrid.Game("Warhammer 40,000: Space Marine", "https://images.igdb.com/igdb/image/upload/t_cover_big/co1tx9.webp"),
 	];
+
+	List<GameGrid.Game> currentGames = allGames;
+
+	private void Noop()
+	{
+		// just blocks the form submit
+	}
+
+	private void FilterGames(ChangeEventArgs args)
+    {
+    	currentGames = [];
+
+    	string inputText = args.Value.ToString().ToLower();
+        foreach (GameGrid.Game game in allGames) {
+        	if (inputText == "" || game.Title.ToLower().Contains(inputText)) {
+	        	currentGames.Add(game);
+	        }
+        }
+    }
 }
