@@ -1,0 +1,43 @@
+h1 {
+	margin: 20px 0 30px;
+}
+
+ul {
+	font-size: 14pt;
+	font-weight: bold;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+ul li {
+	margin: 0.5em 0;	
+}
+
+ul ::deep a {
+	border-radius: 0.5em;
+	color: inherit;
+	display: block;
+	padding: 0.75em 1em;
+	text-decoration: none;
+}
+
+ul ::deep a.active,
+ul ::deep a:hover {
+	background: #F2F2F2;
+    color: #222;
+}
+
+ul ::deep a svg {
+	margin-right: 0.25em;
+	position: relative;
+	top: 0.15em;
+}
+
+#sidebar {
+	box-sizing: border-box;
+	background: #222;
+    color: #F2F2F2;
+    min-height: 100%;
+    padding: 20px;
+}
