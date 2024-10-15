@@ -1,0 +1,55 @@
+﻿@page "/collection"
+@rendermode InteractiveServer
+
+<div id="home">
+	<form @onsubmit="Noop">
+		<div class="search-field">
+			<input type="search" name="q" placeholder="Search..." @oninput="FilterGames" />
+			<button>
+				<Icon Type="Icon.IconType.MagnifyingGlass" />
+			</button>
+		</div>
+	</form>
+
+	<GameGrid Games="@currentGames" />
+</div>
+
+@code {
+	static List<GameGrid.Game> allGames = [
+		new GameGrid.Game("A Vampyre Story", "https://images.igdb.com/igdb/image/upload/t_cover_big/co3diy.webp"),
+		new GameGrid.Game("American McGee Presents: Scrapland", "https://images.igdb.com/igdb/image/upload/t_cover_big/co2gb2.webp"),
+		new GameGrid.Game("Age of Empires III", "https://images.igdb.com/igdb/image/upload/t_cover_big/co1xy6.webp"),
+		new GameGrid.Game("Discworld Noir", "https://images.igdb.com/igdb/image/upload/t_cover_big/co3h5y.webp"),
+		new GameGrid.Game("Gunman Chronicles", "https://images.igdb.com/igdb/image/upload/t_cover_big/co730v.webp"),
+		new GameGrid.Game("Halo: Combat Evolved", "https://images.igdb.com/igdb/image/upload/t_cover_big/co2r2r.webp"),
+		new GameGrid.Game("Heavy Metal: F.A.K.K. 2", "https://images.igdb.com/igdb/image/upload/t_cover_big/co23hs.webp"),
+		new GameGrid.Game("Indiana Jones and the Infernal Machine", "https://images.igdb.com/igdb/image/upload/t_cover_big/co294n.webp"),
+		new GameGrid.Game("Kiss: Psycho Circus - The Nightmare Child", "https://images.igdb.com/igdb/image/upload/t_cover_big/co40po.webp"),
+		new GameGrid.Game("Oni", "https://images.igdb.com/igdb/image/upload/t_cover_big/co2lcb.webp"),
+		new GameGrid.Game("Vampire: The Masquerade - Bloodlines", "https://images.igdb.com/igdb/image/upload/t_cover_big/co2n14.webp"),
+		new GameGrid.Game("Warhammer 40,000: Space Marine", "https://images.igdb.com/igdb/image/upload/t_cover_big/co1tx9.webp"),
+	];
+
+	List<GameGrid.Game> currentGames = allGames;
+
+	private void Noop()
+	{
+		// just blocks the form submit
+	}
+
+	private void FilterGames(ChangeEventArgs args)
+    {
+    	string inputText = args.Value.ToString();
+    	if (inputText is null) {
+    		return;  // something went wrong, just stop
+    	}
+
+		currentGames = [];
+		inputText = inputText.ToLower();
+        foreach (GameGrid.Game game in allGames) {
+        	if (inputText == "" || game.Title.ToLower().Contains(inputText)) {
+	        	currentGames.Add(game);
+	        }
+        }
+    }
+}
