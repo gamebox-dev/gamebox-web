@@ -1,8 +1,9 @@
 <script lang="ts">
 	import GameGrid from "$lib/components/GameGrid.svelte";
+	import SearchField from "$lib/components/SearchField.svelte";
 	import type { Game } from "$lib/types";
 
-	const games: Game[] = [
+	const allGames: Game[] = [
 		{
 			title: "A Vampyre Story",
 			image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co3diy.webp",
@@ -49,6 +50,29 @@
 			image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1tx9.webp",
 		},
 	];
+
+	let games = allGames.slice();
+
+	function filterGames(text: string) {
+		games = [];
+		for (const game of allGames) {
+			if (text == "" || game.title.toLowerCase().indexOf(text) != -1) {
+				games.push(game);
+			}
+		}
+	}
 </script>
 
+<form>
+	<SearchField onchange={filterGames} />
+</form>
+
 <GameGrid {games} />
+
+<style>
+	form {
+		display: flex;
+		justify-content: flex-end;
+		margin-bottom: 20px;
+	}
+</style>
