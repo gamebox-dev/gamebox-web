@@ -1,7 +1,7 @@
 <script lang="ts">
 	// Icons from: https://github.com/iconic/open-iconic
 
-	import { IconType } from '$lib/types';
+	import { IconType } from "$lib/types";
 
 	export let type: IconType;
 </script>

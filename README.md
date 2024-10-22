@@ -4,7 +4,7 @@ GameBox frontend web application.
 
 ## Requirements
 
-* Node 20+
+- Node 20+
 
 ## Developing
 

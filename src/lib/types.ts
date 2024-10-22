@@ -7,5 +7,5 @@ export enum IconType {
 	Folder,
 	ListRich,
 	MagnifyingGlass,
-	Plus
+	Plus,
 }

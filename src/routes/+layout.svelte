@@ -1,15 +1,15 @@
 <script lang="ts">
-	import '../app.css';
-	import { page } from '$app/stores';
-	import Icon from '$lib/components/Icon.svelte';
-	import { IconType } from '$lib/types';
+	import "../app.css";
+	import { page } from "$app/stores";
+	import Icon from "$lib/components/Icon.svelte";
+	import { IconType } from "$lib/types";
 
 	let { children } = $props();
 
 	const links = [
-		{ uri: '/collection', title: 'Collection', icon: IconType.Box },
-		{ uri: '/wishlist', title: 'Wishlist', icon: IconType.Copywriting },
-		{ uri: '/settings', title: 'Settings', icon: IconType.Cog }
+		{ uri: "/collection", title: "Collection", icon: IconType.Box },
+		{ uri: "/wishlist", title: "Wishlist", icon: IconType.Copywriting },
+		{ uri: "/settings", title: "Settings", icon: IconType.Cog },
 	];
 </script>
 
@@ -25,7 +25,7 @@
 			<ul>
 				{#each links as link}
 					<li>
-						<a href={link.uri} class={$page.url.pathname.startsWith(link.uri) ? 'active' : ''}>
+						<a href={link.uri} class={$page.url.pathname.startsWith(link.uri) ? "active" : ""}>
 							<Icon type={link.icon} />
 							{link.title}
 						</a>
