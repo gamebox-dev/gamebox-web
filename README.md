@@ -4,25 +4,28 @@ GameBox frontend web application.
 
 ## Requirements
 
-- Node 20+
+- [Node 20+](https://nodejs.org/)
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Once you've created a project and installed dependencies with `npm install` (or
+`pnpm install` or `yarn`), start a development server:
 
-```bash
+```shell
 npm run dev
 
 # or start the server and open the app in a new browser tab
 npm run dev -- --open
 ```
 
-## Building
+Code is validated using `svelte-check`:
 
-To create a production version of your app:
-
-```bash
-npm run build
+```shell
+npm run check
 ```
 
-You can preview the production build with `npm run preview`.
+And is formatted using [Prettier](https://prettier.io/):
+
+```shell
+npm run format
+```
