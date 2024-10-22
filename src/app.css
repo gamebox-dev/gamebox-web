@@ -1,0 +1,14 @@
+body {
+	height: 100%;
+	margin: 0;
+}
+
+html {
+	background: #f2f2f2;
+	color: #222;
+	font-family: Avenir, Montserrat, Corbel, "URW Gothic", source-sans-pro, sans-serif;
+}
+
+img {
+	max-width: 100%;
+}

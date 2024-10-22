@@ -4,33 +4,28 @@ GameBox frontend web application.
 
 ## Requirements
 
-* [dotnet](https://dotnet.microsoft.com/) 8+
+- [Node 20+](https://nodejs.org/)
 
-## Usage
+## Developing
 
-### Visual Studio
-
-Open the `GameBox.csproj` file in Visual Studio and build/run it there.
-
-### Command Line
-
-Build the application:
-
-```
-dotnet build --configuration Release
-```
-
-Run the resulting application and visit [localhost:5000](http://localhost:5000)
-to see the running application:
-
-```
-./bin/Release/net8.0/GameBox
-```
-
-#### Alternatively
-
-Run it directly via `dotnet run`:
+Once you've created a project and installed dependencies with `npm install` (or
+`pnpm install` or `yarn`), start a development server:
 
 ```shell
-dotnet run
+npm run dev
+
+# or start the server and open the app in a new browser tab
+npm run dev -- --open
+```
+
+Code is validated using `svelte-check`:
+
+```shell
+npm run check
+```
+
+And is formatted using [Prettier](https://prettier.io/):
+
+```shell
+npm run format
 ```
