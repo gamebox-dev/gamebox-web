@@ -1,22 +1,14 @@
 <script lang="ts">
+	import ExternalGame from "$lib/components/ExternalGame.svelte";
 	import Icon from "$lib/components/Icon.svelte";
 	import IGDBLogo from "$lib/components/IGDBLogo.svelte";
 	import SearchField from "$lib/components/SearchField.svelte";
 	import { addGameToCollection, searchExternalGames } from "$lib/api";
-	import { IconType } from "$lib/types";
-	import type { ExternalGame } from "$lib/types";
+	import { IconType, type ExternalGame as TExternalGame } from "$lib/types";
 
 	let loading: boolean = $state(false);
 	let hasSearched: boolean = $state(false);
 	let results: ExternalGame[] = $state([]);
-
-	async function addGame(event: SubmitEvent & { currentTarget: EventTarget & HTMLFormElement; }) {
-		const gameId = Number(event.currentTarget.game.value);
-		const platformId = Number(event.currentTarget.platform.value);
-
-		const result = await addGameToCollection(gameId, platformId);
-		// TODO show result in list
-	}
 
 	async function findGames(text: string) {
 		loading = true;
@@ -24,7 +16,6 @@
 		hasSearched = true;
 		loading = false;
 	}
-
 </script>
 
 <h1>Add Game to Collection</h1>
@@ -51,45 +42,14 @@
 {/if}
 
 <ul class="games">
-{#each results as result}
-	<li>
-		<div class="image">
-			{#if result.imagePath}
-				<img src={result.imagePath} alt="" />
-			{:else}
-				TODO No image
-			{/if}
-		</div>
-		<div class="body">
-			<h2>{result.title}</h2>
-			<p>{result.description}</p>
-			<small>20XX</small>
-			<form onsubmit={addGame}>
-				<input type="hidden" name="game" value={result.externalID} />
-				<select name="platform">
-					{#each result.platforms as platform}
-						<option value={platform.id}>{platform.name}</option>
-					{/each}
-				</select>
-				<button>
-					<Icon type={IconType.Plus} />
-					Add
-				</button>
-			</form>
-		</div>
-	</li>
-{/each}
+	{#each results as result}
+		<li>
+			<ExternalGame game={result} />
+		</li>
+	{/each}
 </ul>
 
 <style>
-	h2 {
-		margin: 0.25em 0;
-	}
-
-	p {
-		margin: 0.25em 0;
-	}
-
 	small {
 		color: #999;
 		font-style: italic;
@@ -110,24 +70,8 @@
 		padding: 0;
 	}
 
-	.games img {
-		display: block;
-		width: 100%;
-	}
-
 	.games li {
-		clear: both;
-		display: flex;
 		margin: 2em 0;
-	}
-
-	.games .image {
-		margin-right: 1em;
-		width: 150px;
-	}
-
-	.games .body {
-		flex: 1;
 	}
 
 	.search-form {
