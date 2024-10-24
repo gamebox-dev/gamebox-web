@@ -1,9 +1,12 @@
 <script lang="ts">
 	// Icons from: https://github.com/iconic/open-iconic
-
 	import { IconType } from "$lib/types";
 
-	export let type: IconType;
+	interface Props {
+		type: IconType;
+	}
+
+	let { type }: Props = $props();
 </script>
 
 {#if type == IconType.Box}
