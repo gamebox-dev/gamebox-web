@@ -1,4 +1,5 @@
 <script lang="ts">
+	import AddGameButton from "$lib/components/AddGameButton.svelte";
 	import GameGrid from "$lib/components/GameGrid.svelte";
 	import SearchField from "$lib/components/SearchField.svelte";
 	import type { Game } from "$lib/types";
@@ -72,6 +73,8 @@
 </form>
 
 <GameGrid {games} />
+
+<AddGameButton href="/collection/add" />
 
 <style>
 	form {
