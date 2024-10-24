@@ -2,12 +2,12 @@ import type { ExternalGame, Game } from "$lib/types";
 
 const API_ROOT = "http://localhost:5049";
 
-export async function addGameToCollection(
-	gameId: number,
-	platformId: number,
-): Promise<Game | null> {
-	console.warn("TODO");
-	return null;
+export async function addGameToCollection(gameId: number, platformId: number): Promise<Game> {
+	// TODO get the resulting game from the API
+	return {
+		title: "Silent Hill 2",
+		image: "https://images.igdb.com/igdb/image/upload/t_thumb/co5l7s.jpg",
+	};
 }
 
 export async function searchExternalGames(q: string): Promise<ExternalGame[]> {

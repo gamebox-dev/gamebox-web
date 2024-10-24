@@ -6,18 +6,22 @@
 
 	interface Props {
 		game: ExternalGame;
+		onaddgame?: (gameId: number, platformId: number) => any | null;
 	}
 
-	let { game }: Props = $props();
+	let { game, onaddgame = undefined }: Props = $props();
+	let adding: boolean = $state(false);
 
-	async function addGame(event: SubmitEvent & { currentTarget: EventTarget & HTMLFormElement }) {
+	function addGame(event: SubmitEvent & { currentTarget: EventTarget & HTMLFormElement }) {
 		event.preventDefault();
 
 		const gameId = Number(event.currentTarget.game.value);
 		const platformId = Number(event.currentTarget.platform.value);
 
-		const result = await addGameToCollection(gameId, platformId);
-		// TODO show result in list
+		adding = true;
+		if (onaddgame != undefined) {
+			onaddgame(gameId, platformId);
+		}
 	}
 </script>
 
@@ -33,18 +37,20 @@
 		<h2>{game.title}</h2>
 		<p>{game.description}</p>
 		<small>20XX</small>
-		<form onsubmit={addGame}>
-			<input type="hidden" name="game" value={game.externalID} />
-			<select name="platform">
-				{#each game.platforms as platform}
-					<option value={platform.id}>{platform.name}</option>
-				{/each}
-			</select>
-			<button>
-				<Icon type={IconType.Plus} />
-				Add
-			</button>
-		</form>
+		{#if onaddgame != undefined}
+			<form onsubmit={addGame}>
+				<input type="hidden" name="game" value={game.externalID} />
+				<select name="platform">
+					{#each game.platforms as platform}
+						<option value={platform.id}>{platform.name}</option>
+					{/each}
+				</select>
+				<button disabled={adding}>
+					<Icon type={IconType.Plus} />
+					Add
+				</button>
+			</form>
+		{/if}
 	</div>
 </div>
 
