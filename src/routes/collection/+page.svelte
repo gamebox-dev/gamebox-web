@@ -63,7 +63,11 @@
 	}
 </script>
 
-<form>
+<form
+	on:submit={(e) => {
+		e.preventDefault();
+	}}
+>
 	<SearchField onchange={filterGames} />
 </form>
 
