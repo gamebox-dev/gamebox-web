@@ -18,7 +18,7 @@
 </script>
 
 <div class="search-field">
-	<input type="search" name="q" placeholder="Search..." on:input={handleOnInput} />
+	<input type="search" name="q" placeholder="Search..." oninput={handleOnInput} />
 	<button>
 		<Icon type={IconType.MagnifyingGlass} />
 	</button>
