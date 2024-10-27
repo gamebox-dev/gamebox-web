@@ -6,7 +6,12 @@
 
 	let games = $collection.slice();
 
-	function filterGames(text: string) {
+	function filterGames(event: Event & { currentTarget: EventTarget & HTMLInputElement }) {
+		if (event == null || event.currentTarget == null) {
+			return;
+		}
+
+		const text = event.currentTarget.value;
 		games = [];
 		for (const game of $collection) {
 			if (text == "" || game.title.toLowerCase().indexOf(text) != -1) {
@@ -16,12 +21,8 @@
 	}
 </script>
 
-<form
-	on:submit={(e) => {
-		e.preventDefault();
-	}}
->
-	<SearchField onchange={filterGames} />
+<form onsubmit={(e) => e.preventDefault()}>
+	<input type="search" placeholder="Filter..." oninput={filterGames} />
 </form>
 
 <GameGrid {games} />
@@ -30,6 +31,17 @@
 	form {
 		display: flex;
 		justify-content: flex-end;
-		margin-bottom: 20px;
+		margin-bottom: 0.25em;
+	}
+
+	input {
+		background: none;
+		border: 1px solid var(--background-secondary);
+		color: inherit;
+		padding: 0.25em;
+	}
+
+	input:focus {
+		outline: none;
 	}
 </style>
