@@ -18,7 +18,7 @@
 		<ul>
 			<li><a href="/collection" class={$page.url.pathname.startsWith("/collection") ? "active" : ""}>Collection</a></li>
 			<li><a href="/wishlist" class={$page.url.pathname.startsWith("/wishlist") ? "active" : ""}>Wishlist</a></li>
-			<li><a href="/settings"><Icon type={IconType.Cog} /></a></li>
+			<li><a href="/settings" title="Settings"><Icon type={IconType.Cog} /></a></li>
 		</ul>
 	</nav>
 
