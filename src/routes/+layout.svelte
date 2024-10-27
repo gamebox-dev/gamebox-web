@@ -16,13 +16,21 @@
 
 	<nav>
 		<ul>
-			<li><a href="/collection" class={$page.url.pathname.startsWith("/collection") ? "active" : ""}>Collection</a></li>
-			<li><a href="/wishlist" class={$page.url.pathname.startsWith("/wishlist") ? "active" : ""}>Wishlist</a></li>
+			<li>
+				<a href="/collection" class={$page.url.pathname.startsWith("/collection") ? "active" : ""}
+					>Collection</a
+				>
+			</li>
+			<li>
+				<a href="/wishlist" class={$page.url.pathname.startsWith("/wishlist") ? "active" : ""}
+					>Wishlist</a
+				>
+			</li>
 			<li><a href="/settings" title="Settings"><Icon type={IconType.Cog} /></a></li>
 		</ul>
 	</nav>
 
-	<form onsubmit={(e) => e.preventDefault()}>
+	<form action="/search">
 		<input type="search" name="q" placeholder="Search" />
 		<button>
 			<Icon type={IconType.MagnifyingGlass} />
