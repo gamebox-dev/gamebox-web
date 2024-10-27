@@ -6,7 +6,7 @@ export async function addGameToCollection(gameId: number, platformId: number): P
 	// TODO get the resulting game from the API
 	return {
 		title: "Silent Hill 2",
-		image: "https://images.igdb.com/igdb/image/upload/t_thumb/co5l7s.jpg",
+		image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co5l7s.jpg",
 	};
 }
 
