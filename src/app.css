@@ -1,11 +1,20 @@
+:root {
+	--background: #16181c;
+	--background-field: #30394c;
+	--field-placeholder: #6c757d;
+	--background-secondary: #242832;
+	--text: #e4f6ff;
+	--text-secondary: #8f9ca7;
+}
+
 body {
 	height: 100%;
 	margin: 0;
 }
 
 html {
-	background: #f2f2f2;
-	color: #222;
+	background: var(--background);
+	color: var(--text);
 	font-family: Avenir, Montserrat, Corbel, "URW Gothic", source-sans-pro, sans-serif;
 }
 
