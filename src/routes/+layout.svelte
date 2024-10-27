@@ -16,8 +16,8 @@
 
 	<nav>
 		<ul>
-			<li><a href="/collection">Collection</a></li>
-			<li><a href="/wishlist">Wishlist</a></li>
+			<li><a href="/collection" class={$page.url.pathname.startsWith("/collection") ? "active" : ""}>Collection</a></li>
+			<li><a href="/wishlist" class={$page.url.pathname.startsWith("/wishlist") ? "active" : ""}>Wishlist</a></li>
 			<li><a href="/settings"><Icon type={IconType.Cog} /></a></li>
 		</ul>
 	</nav>
@@ -118,11 +118,23 @@
 
 	header nav a {
 		color: inherit;
+		position: relative;
 		text-decoration: none;
 	}
 
 	header nav a:hover {
 		color: white;
+	}
+
+	header nav a.active::after {
+		background: var(--brand);
+		bottom: -0.25em;
+		border-radius: 0.25em;
+		content: "";
+		height: 2px;
+		left: 0.25em;
+		position: absolute;
+		right: 0.25em;
 	}
 
 	header ul {
