@@ -2,7 +2,11 @@
 	import Icon from "$lib/components/Icon.svelte";
 	import { IconType } from "$lib/types";
 
-	export let onchange: (text: string) => any = () => {};
+	interface Props {
+		onchange: (text: string) => any;
+	}
+
+	let { onchange = () => {} }: Props = $props();
 
 	function handleOnInput(event: Event & { currentTarget: EventTarget & HTMLInputElement }) {
 		if (event == null || event.currentTarget == null) {
@@ -14,7 +18,7 @@
 </script>
 
 <div class="search-field">
-	<input type="search" name="q" placeholder="Search..." on:input={handleOnInput} />
+	<input type="search" name="q" placeholder="Search..." oninput={handleOnInput} />
 	<button>
 		<Icon type={IconType.MagnifyingGlass} />
 	</button>

@@ -1,7 +1,11 @@
 <script lang="ts">
 	import type { Game } from "$lib/types";
 
-	export let games: Game[];
+	interface Props {
+		games: Game[];
+	}
+
+	let { games }: Props = $props();
 </script>
 
 <ul>
