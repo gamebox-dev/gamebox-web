@@ -22,7 +22,7 @@
 		</ul>
 	</nav>
 
-	<form onsubmit={ (e) => e.preventDefault() }>
+	<form onsubmit={(e) => e.preventDefault()}>
 		<input type="search" name="q" placeholder="Search" />
 		<button>
 			<Icon type={IconType.MagnifyingGlass} />
@@ -33,25 +33,22 @@
 <main>{@render children()}</main>
 
 <footer>
-	&copy; GameBox 2024
-	&middot;
-	vX.X.X
-	&middot;
-	Powered by <a href="https://igdb.com">IGDB</a>
+	&copy; GameBox 2024 &middot; vX.X.X &middot; Powered by <a href="https://igdb.com">IGDB</a>
 </footer>
 
 <style>
-	footer,
 	header,
 	main {
 		margin: 0 auto;
-		max-width: 1140px;
+		max-width: 1136px;
 		padding: 1em;
 	}
 
 	footer {
 		background: var(--background-secondary);
+		color: var(--text-footer);
 		font-size: 10pt;
+		padding: 1em;
 		text-align: center;
 	}
 
@@ -104,7 +101,7 @@
 		padding: 0;
 	}
 
-	header input:focus{
+	header input:focus {
 		outline: none;
 	}
 

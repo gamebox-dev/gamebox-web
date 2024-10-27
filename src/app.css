@@ -1,9 +1,10 @@
 :root {
 	--background: #16181c;
 	--background-field: #30394c;
-	--field-placeholder: #6c757d;
 	--background-secondary: #242832;
+	--field-placeholder: #6c757d;
 	--text: #e4f6ff;
+	--text-footer: #6c757d;
 	--text-secondary: #8f9ca7;
 }
 

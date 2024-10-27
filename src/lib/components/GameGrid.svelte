@@ -13,36 +13,60 @@
 		<li>
 			<a href="/game/123">
 				<img src={game.image} alt={game.title} title={game.title} />
+				<span>{game.title}</span>
 			</a>
 		</li>
 	{/each}
 </ul>
 
 <style>
+	a {
+		display: block;
+		color: white;
+		font-size: 10pt;
+		font-weight: bold;
+		text-decoration: none;
+	}
+
+	a:hover span {
+		opacity: 1;
+	}
+
+	img {
+		display: block;
+	}
+
+	li {
+		border: 1px solid var(--background-secondary);
+		border-radius: 3px;
+		display: inline-block;
+		margin: 4px;
+		overflow: hidden;
+		position: relative;
+		width: 133px;
+	}
+
+	span {
+		align-items: center;
+		background: rgba(0, 0, 0, 0.75);
+		bottom: 0;
+		display: flex;
+		justify-content: center;
+		left: 0;
+		line-height: 1.5em;
+		opacity: 0;
+		padding: 1em;
+		position: absolute;
+		right: 0;
+		top: 0;
+		transition: opacity 0.2s;
+	}
+
 	ul {
-		column-gap: 10px;
-		display: grid;
-		grid-template-columns: repeat(5, 1fr);
+		line-height: 0;
 		list-style: none;
-		margin: 0;
+		margin: 0 -4px;
 		padding: 0;
-		row-gap: 10px;
-	}
-
-	ul a {
-		border: 3px solid transparent;
-		border-radius: 3px;
-		display: block;
-		padding: 1px;
-	}
-
-	ul a:hover {
-		border-color: #c00;
-	}
-
-	ul img {
-		border-radius: 3px;
-		display: block;
-		width: 100%;
+		text-align: center;
 	}
 </style>
