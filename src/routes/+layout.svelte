@@ -5,89 +5,159 @@
 	import { IconType } from "$lib/types";
 
 	let { children } = $props();
-
-	const links = [
-		{ uri: "/collection", title: "Collection", icon: IconType.Box },
-		{ uri: "/wishlist", title: "Wishlist", icon: IconType.Copywriting },
-		{ uri: "/settings", title: "Settings", icon: IconType.Cog },
-	];
 </script>
 
-<div id="container">
-	<header>
-		<h1>
-			<a href="/">
-				<img id="logo" src="/logo-light.png" alt="GameBox" />
-			</a>
-		</h1>
+<header>
+	<h1>
+		<a href="/">
+			<img id="logo" src="/logo-light.png" alt="GameBox" />
+		</a>
+	</h1>
 
-		<nav>
-			<ul>
-				{#each links as link}
-					<li>
-						<a href={link.uri} class={$page.url.pathname.startsWith(link.uri) ? "active" : ""}>
-							<Icon type={link.icon} />
-							{link.title}
-						</a>
-					</li>
-				{/each}
-			</ul>
-		</nav>
-	</header>
+	<nav>
+		<ul>
+			<li>
+				<a href="/collection" class={$page.url.pathname.startsWith("/collection") ? "active" : ""}
+					>Collection</a
+				>
+			</li>
+			<li>
+				<a href="/wishlist" class={$page.url.pathname.startsWith("/wishlist") ? "active" : ""}
+					>Wishlist</a
+				>
+			</li>
+			<li><a href="/settings" title="Settings"><Icon type={IconType.Cog} /></a></li>
+		</ul>
+	</nav>
 
-	<main>{@render children()}</main>
-</div>
+	<form action="/search">
+		<input type="search" name="q" placeholder="Search" />
+		<button>
+			<Icon type={IconType.MagnifyingGlass} />
+		</button>
+	</form>
+</header>
+
+<main>{@render children()}</main>
+
+<footer>
+	&copy; GameBox 2024 &middot; vX.X.X &middot; Powered by <a href="https://igdb.com">IGDB</a>
+</footer>
 
 <style>
-	header {
-		box-sizing: border-box;
-		background: #222;
-		color: #f2f2f2;
-		min-height: 100%;
-		padding: 20px;
-	}
-
-	h1 {
-		margin: 20px 0 30px;
-	}
-
+	header,
 	main {
-		padding: 20px;
+		margin: 0 auto;
+		max-width: 1136px;
+		padding: 1em;
 	}
 
-	ul {
-		font-size: 14pt;
-		font-weight: bold;
-		list-style: none;
-		margin: 0;
-		padding: 0;
+	footer {
+		background: var(--background-secondary);
+		color: var(--text-footer);
+		font-size: 10pt;
+		padding: 1em;
+		text-align: center;
 	}
 
-	ul li {
-		margin: 0.5em 0;
-	}
-
-	ul a {
-		border-radius: 0.5em;
-		color: inherit;
-		display: block;
-		padding: 0.75em 1em;
+	footer a {
+		color: white;
 		text-decoration: none;
 	}
 
-	ul a.active,
-	ul a:hover {
-		background: #f2f2f2;
-		color: #222;
+	footer a:hover {
+		text-decoration: underline;
 	}
 
-	ul a :global(svg) {
-		margin-right: 0.25em;
+	header {
+		align-items: center;
+		display: flex;
 	}
 
-	#container {
-		display: grid;
-		grid-template-columns: 300px auto;
-		min-height: 100vh;
+	header button {
+		background: none;
+		color: inherit;
+		cursor: pointer;
+		border: 0;
+		padding: 0.5em;
+		margin: 0 0 0 0.5em;
+	}
+
+	header button:hover {
+		color: white;
+	}
+
+	header form {
+		background: var(--background-field);
+		border-radius: 3px;
+		display: flex;
+		flex: 0 0 12em;
+		font-size: 12pt;
+		padding: 0.25em 0.5em;
+	}
+
+	header h1 {
+		flex: 0 0 6em;
+		margin: 0;
+	}
+
+	header input {
+		background: none;
+		border: 0;
+		color: white;
+		font-size: inherit;
+		padding: 0;
+	}
+
+	header input:focus {
+		outline: none;
+	}
+
+	header input::placeholder {
+		color: var(--field-placeholder);
+		opacity: 1;
+	}
+
+	header nav {
+		flex: 1;
+		font-weight: bold;
+		margin: 0 1em;
+	}
+
+	header nav a {
+		color: inherit;
+		position: relative;
+		text-decoration: none;
+	}
+
+	header nav a:hover {
+		color: white;
+	}
+
+	header nav a.active::after {
+		background: var(--brand);
+		bottom: -0.25em;
+		border-radius: 0.25em;
+		content: "";
+		height: 2px;
+		left: 0.25em;
+		position: absolute;
+		right: 0.25em;
+	}
+
+	header ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		text-align: right;
+	}
+
+	header li {
+		display: inline-block;
+		margin: 0 0.5em;
+	}
+
+	main {
+		min-height: calc(100vh - 154px);
 	}
 </style>

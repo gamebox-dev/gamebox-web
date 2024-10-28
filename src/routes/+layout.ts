@@ -1,5 +1,3 @@
-export const ssr = false;
-
 import { collection } from "$lib/store";
 import type { Game } from "$lib/types";
 

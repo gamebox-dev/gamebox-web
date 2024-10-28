@@ -1,14 +1,49 @@
+:root {
+	--background: #16181c;
+	--background-field: #30394c;
+	--background-secondary: #242832;
+	--brand: #cb0000;
+	--field-placeholder: #6c757d;
+	--text: #e4f6ff;
+	--text-footer: #6c757d;
+	--text-secondary: #8f9ca7;
+}
+
 body {
 	height: 100%;
 	margin: 0;
 }
 
+button {
+	border: 0;
+	border-radius: 3px;
+	cursor: pointer;
+	font-family: inherit;
+}
+
+input {
+	font-family: inherit;
+}
+
 html {
-	background: #f2f2f2;
-	color: #222;
+	background: var(--background);
+	color: var(--text);
 	font-family: Avenir, Montserrat, Corbel, "URW Gothic", source-sans-pro, sans-serif;
 }
 
 img {
 	max-width: 100%;
+}
+
+.overlay {
+	align-items: center;
+	background: rgba(0, 0, 0, 0.5);
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 1;
 }
