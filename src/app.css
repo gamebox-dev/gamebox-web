@@ -14,7 +14,13 @@ body {
 	margin: 0;
 }
 
-button,
+button {
+	border: 0;
+	border-radius: 3px;
+	cursor: pointer;
+	font-family: inherit;
+}
+
 input {
 	font-family: inherit;
 }
@@ -27,4 +33,17 @@ html {
 
 img {
 	max-width: 100%;
+}
+
+.overlay {
+	align-items: center;
+	background: rgba(0, 0, 0, 0.5);
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 1;
 }

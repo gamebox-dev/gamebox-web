@@ -1,9 +1,16 @@
 <script lang="ts">
 	import type { PageData } from "./$types";
+	import type { ExternalGame } from "$lib/types";
 
-	export let data: PageData;
+	let { data }: { data: PageData } = $props();
 
 	const s = data.results.length != 1 ? "s" : "";
+	let selectedGame: ExternalGame | null = $state(null);
+
+	function deselectGame(event: MouseEvent & { currentTarget: EventTarget & HTMLButtonElement }) {
+		event.preventDefault();
+		selectedGame = null;
+	}
 </script>
 
 <h2>
@@ -35,24 +42,40 @@
 				</ul>
 			</div>
 			<div class="controls">
-				<button>Add to Collection</button>
+				<button
+					onclick={() => {
+						selectedGame = game;
+					}}>Add to Collection</button
+				>
 				<button>Add to Wishlist</button>
 			</div>
 		</li>
 	{/each}
 </ul>
 
-<style>
-	button {
-		border: 0;
-		border-radius: 3px;
-		cursor: pointer;
-		display: block;
-		margin-bottom: 0.5em;
-		padding: 0.5em;
-		width: 100%;
-	}
+{#if selectedGame != null}
+	<div class="overlay">
+		<form class="add-collection" method="POST" action="/collection/add">
+			<input type="hidden" name="game" value={selectedGame.externalID} />
+			<h2>add <strong>{selectedGame.title}</strong> to your collection</h2>
+			<label for="platform">
+				<span>Platform</span>
+				<select id="platform" name="platform">
+					{#each selectedGame.platforms as platform}
+						<option value={platform.id}>{platform.name}</option>
+					{/each}
+				</select>
+			</label>
+			<div class="controls">
+				<button>Add to Collection</button>
+				or
+				<button class="cancel" onclick={deselectGame}>Cancel</button>
+			</div>
+		</form>
+	</div>
+{/if}
 
+<style>
 	h2 {
 		color: var(--text-secondary);
 		font-size: 18pt;
@@ -95,15 +118,60 @@
 		padding: 0;
 	}
 
-	.controls {
-		flex: 0 0 10em;
-		padding-top: 44px;
+	.add-collection {
+		background: var(--background-secondary);
+		border-radius: 1em;
+		max-width: 32em;
+		padding: 2em;
+	}
+
+	.add-collection .controls {
+		color: var(--text-secondary);
+		text-align: center;
+	}
+
+	.add-collection .controls .cancel {
+		background: none;
+		color: inherit;
+		font-size: inherit;
+		padding: 0;
+	}
+
+	.add-collection .controls .cancel:hover {
+		text-decoration: underline;
+	}
+
+	.add-collection label {
+		display: flex;
+		margin: 2em 0;
+	}
+
+	.add-collection label span {
+		flex: 0 0 40%;
+		margin: 0 5%;
+		text-align: right;
+	}
+
+	.add-collection h2 {
+		margin-top: 0;
 	}
 
 	.game {
 		border-bottom: 1px solid var(--background-secondary);
 		display: flex;
 		padding: 0.5em 0;
+	}
+
+	.game .controls {
+		flex: 0 0 10em;
+		padding-top: 44px;
+	}
+
+	.game .controls button {
+		display: block;
+		margin-bottom: 0.5em;
+		padding: 0.5em 1em;
+		width: 100%;
 	}
 
 	.image {
